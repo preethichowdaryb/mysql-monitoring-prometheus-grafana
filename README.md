@@ -15,6 +15,17 @@ Prometheus – scrapes metrics from the exporter at intervals (every 15s) and st
 Grafana – reads from Prometheus and visualizes the metrics in dashboards.
 All of this runs in Docker containers, orchestrated with docker-compose.
 
+Files in the repo :
+1. docker-compose.yml → Defines and runs MySQL, Prometheus, Grafana, and mysqld_exporter containers.
+2. prometheus/prometheus.yml → Configures Prometheus to scrape MySQL metrics from mysqld_exporter.
+3. grafana-provisioning/datasources/prometheus.yml → Sets up Prometheus as the default Grafana data source.
+4. grafana-provisioning/dashboards/dashboards.yml → Tells Grafana where to find and auto-load dashboards.
+5. grafana-provisioning/dashboards/mysql-dashboard.json → configured Grafana dashboard for MySQL metrics ( Here code is for active connections)
+6. .my.cnf (local only) → Stores MySQL credentials for mysqld_exporter (not pushed to Git).
+7. .gitignore → Ensures sensitive and unnecessary files (like .my.cnf) are not committed.
+8. README.md → Documentation describing the project setup, usage, and output.
+
+
 Output :
 Once everything is running, here’s what you’ll get:
 1. Prometheus continuously scrapes metrics from MySQL.
